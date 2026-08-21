@@ -28,3 +28,4 @@ exports.handler = async () => {
     },
   };
 };
+// redeploy: prise en compte des variables OAuth (2026-08-21T10:00:50Z)
