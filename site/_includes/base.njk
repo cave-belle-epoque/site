@@ -331,15 +331,26 @@ footer p{margin:0 0 7px}
 
 <script>
 document.getElementById('form').addEventListener('submit', function(e){
-  // Netlify Forms intercepte normalement la soumission côté serveur (voir
-  // l'attribut data-netlify sur le <form>) ; ce script gère seulement le
-  // retour visuel immédiat pendant que la requête part en arrière-plan.
+  // Sans ceci, le navigateur envoie le formulaire tel quel (méthode POST
+  // classique) : comme aucune page de destination n'est définie, Netlify
+  // répond par une page "Page not found" au lieu de notre message de
+  // confirmation. On intercepte donc l'envoi, on le fait nous-mêmes en
+  // arrière-plan (fetch), et on affiche le message une fois la réponse
+  // reçue — la page ne change jamais.
+  e.preventDefault();
   var form = this;
-  setTimeout(function(){
+  var data = new URLSearchParams(new FormData(form)).toString();
+  fetch('/', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+    body: data
+  }).then(function(){
     document.getElementById('ok').classList.add('show');
     form.style.display = 'none';
     document.getElementById('ok').scrollIntoView({behavior:'smooth', block:'center'});
-  }, 50);
+  }).catch(function(){
+    alert("La demande n'a pas pu être envoyée. Merci de nous appeler directement au 04 26 55 46 71.");
+  });
 });
 
 // Statut d'ouverture calculé en direct à partir de content/horaires.yml
