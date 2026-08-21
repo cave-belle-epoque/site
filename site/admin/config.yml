@@ -12,7 +12,11 @@ backend:
 # avec un lien de prévisualisation avant mise en ligne (voir architecture.md §6).
 publish_mode: editorial_workflow
 
-media_folder: "assets/uploads"
+# Chemins relatifs à la RACINE DU DÉPÔT (docs/, maquette/, site/) et non au
+# dossier "site/" lui-même où vit ce fichier — Decap CMS ignore la notion
+# de "Base directory" propre à Netlify. public_folder reste sans "site/" :
+# c'est un chemin public (servi par le site construit), pas un chemin dépôt.
+media_folder: "site/assets/uploads"
 public_folder: "/assets/uploads"
 
 collections:
@@ -21,7 +25,7 @@ collections:
     files:
       - name: "menu"
         label: "Menu de la semaine"
-        file: "content/menu.yml"
+        file: "site/content/menu.yml"
         fields:
           - {label: "Semaine du", name: "semaine_du", widget: "date", format: "YYYY-MM-DD"}
           - {label: "Prix du menu", name: "prix", widget: "number", default: 21}
@@ -44,7 +48,7 @@ collections:
 
   - name: "evenements"
     label: "Événements"
-    folder: "content/evenements"
+    folder: "site/content/evenements"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     summary: "{{title}} — {{date}}"
@@ -60,7 +64,7 @@ collections:
     files:
       - name: "horaires"
         label: "Horaires & fermetures"
-        file: "content/horaires.yml"
+        file: "site/content/horaires.yml"
         fields:
           - label: "Jours"
             name: "jours"
