@@ -1,0 +1,90 @@
+# Configuration Decap CMS — voir docs/architecture.md à la racine du projet
+# pour le détail des choix (auth GitHub OAuth, workflow éditorial, etc.)
+
+backend:
+  name: github
+  # TODO : remplacer par "organisation/depot" une fois l'organisation GitHub
+  # cave-belle-epoque créée (voir docs/architecture.md, section 9bis).
+  repo: cave-belle-epoque/site
+  branch: main
+  # TODO : une fois le relais OAuth déployé (fonction Netlify), décommenter
+  # et pointer vers son URL :
+  # base_url: https://cave-belle-epoque.netlify.app
+  # auth_endpoint: api/auth
+
+# Chaque modification passe par Brouillon → Relecture → Prêt à publier,
+# avec un lien de prévisualisation avant mise en ligne (voir architecture.md §6).
+publish_mode: editorial_workflow
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+collections:
+  - name: "menu"
+    label: "Menu de la semaine"
+    files:
+      - name: "menu"
+        label: "Menu de la semaine"
+        file: "content/menu.yml"
+        fields:
+          - {label: "Semaine du", name: "semaine_du", widget: "date", format: "YYYY-MM-DD"}
+          - {label: "Prix du menu", name: "prix", widget: "number", default: 21}
+          - label: "Jours"
+            name: "jours"
+            widget: "list"
+            summary: "{{jour}} — {{plat}}"
+            fields:
+              - {label: "Jour", name: "jour", widget: "select", options: ["Mardi", "Mercredi", "Jeudi", "Vendredi"]}
+              - {label: "Plat", name: "plat", widget: "string"}
+              - {label: "Dessert", name: "dessert", widget: "string"}
+              - {label: "Mettre en avant (ex. menu Pelaud)", name: "avant", widget: "boolean", default: false}
+          - label: "À l'ardoise"
+            name: "ardoise"
+            widget: "list"
+            summary: "{{nom}} — {{prix}}"
+            fields:
+              - {label: "Nom", name: "nom", widget: "string"}
+              - {label: "Prix", name: "prix", widget: "string"}
+
+  - name: "evenements"
+    label: "Événements"
+    folder: "content/evenements"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{title}} — {{date}}"
+    fields:
+      - {label: "Titre", name: "title", widget: "string"}
+      - {label: "Date", name: "date", widget: "date", format: "YYYY-MM-DD"}
+      - {label: "Horaire affiché", name: "horaire", widget: "string", hint: "Ex. « Vendredi, 19h30 · entrée libre »"}
+      - {label: "Mettre en avant (prochain événement)", name: "avant", widget: "boolean", default: false}
+      - {label: "Description", name: "body", widget: "text"}
+
+  - name: "horaires"
+    label: "Horaires"
+    files:
+      - name: "horaires"
+        label: "Horaires & fermetures"
+        file: "content/horaires.yml"
+        fields:
+          - label: "Jours"
+            name: "jours"
+            widget: "list"
+            summary: "{{jour}}{{ferme}}"
+            fields:
+              - {label: "Jour", name: "jour", widget: "select", options: ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"]}
+              - {label: "Fermé ce jour-là", name: "ferme", widget: "boolean", default: false}
+              - label: "Créneaux"
+                name: "creneaux"
+                widget: "list"
+                summary: "{{debut}} – {{fin}}"
+                fields:
+                  - {label: "Début", name: "debut", widget: "string", hint: "Format HH:MM, ex. 09:00"}
+                  - {label: "Fin", name: "fin", widget: "string", hint: "Format HH:MM, ex. 14:00"}
+          - label: "Fermetures exceptionnelles"
+            name: "fermetures_exceptionnelles"
+            widget: "list"
+            summary: "{{motif}}"
+            fields:
+              - {label: "Motif", name: "motif", widget: "string", hint: "Ex. « Vacances d'été »"}
+              - {label: "Du", name: "debut", widget: "date", format: "YYYY-MM-DD"}
+              - {label: "Au", name: "fin", widget: "date", format: "YYYY-MM-DD"}

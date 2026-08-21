@@ -1,0 +1,12 @@
+# Si ce dépôt contient aussi docs/ et maquette/ à la racine (voir
+# architecture.md §9bis), régler "Base directory" = "site" dans les
+# paramètres du site Netlify pour que seul ce dossier soit construit.
+
+[build]
+  publish = "_site"
+  command = "npm run build"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

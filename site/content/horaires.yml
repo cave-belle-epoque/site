@@ -1,0 +1,50 @@
+# Une seule source de vérité pour les horaires : la table affichée et le
+# bandeau "ouvert maintenant" (calculé en direct côté navigateur) lisent
+# tous les deux ces mêmes créneaux — plus de tableau dupliqué à synchroniser
+# à la main comme dans la maquette statique.
+jours:
+  - jour: "Lundi"
+    ferme: true
+    creneaux: []
+  - jour: "Mardi"
+    ferme: false
+    creneaux:
+      - debut: "09:00"
+        fin: "14:00"
+      - debut: "16:30"
+        fin: "19:00"
+  - jour: "Mercredi"
+    ferme: false
+    creneaux:
+      - debut: "09:00"
+        fin: "14:00"
+      - debut: "16:30"
+        fin: "19:00"
+  - jour: "Jeudi"
+    ferme: false
+    creneaux:
+      - debut: "09:00"
+        fin: "14:00"
+      - debut: "16:30"
+        fin: "19:00"
+  - jour: "Vendredi"
+    ferme: false
+    creneaux:
+      - debut: "09:00"
+        fin: "14:00"
+      - debut: "16:30"
+        fin: "23:00"
+  - jour: "Samedi"
+    ferme: false
+    creneaux:
+      - debut: "09:00"
+        fin: "13:30"
+      - debut: "15:30"
+        fin: "19:00"
+  - jour: "Dimanche"
+    ferme: true
+    creneaux: []
+fermetures_exceptionnelles:
+  - motif: "Vacances d'été"
+    debut: "2026-08-01"
+    fin: "2026-08-20"

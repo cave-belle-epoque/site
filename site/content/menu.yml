@@ -1,0 +1,30 @@
+semaine_du: "2026-08-25"
+prix: 21
+jours:
+  - jour: "Mardi"
+    plat: "Quenelle de brochet, sauce Nantua, riz pilaf"
+    dessert: "Tarte fine aux abricots"
+    avant: false
+  - jour: "Mercredi"
+    plat: "Filet de volaille fermière, écrasé de pommes de terre"
+    dessert: "Faisselle des Monts du Lyonnais, coulis de fruits rouges"
+    avant: false
+  - jour: "Jeudi"
+    plat: "Épaule d'agneau confite, légumes du marché"
+    dessert: "Moelleux au chocolat"
+    avant: false
+  - jour: "Vendredi"
+    plat: "Le menu Pelaud"
+    dessert: "Salade lyonnaise · saucisson ou quenelle · ½ saint-marcellin · dessert au choix"
+    avant: true
+ardoise:
+  - nom: "Planche de charcuterie"
+    prix: "14 €"
+  - nom: "Planche fromages des Monts"
+    prix: "13 €"
+  - nom: "La mixte, à partager"
+    prix: "19 €"
+  - nom: "Verre de vin"
+    prix: "4 – 7 €"
+  - nom: "Bière pression"
+    prix: "3,50 €"

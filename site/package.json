@@ -1,0 +1,16 @@
+{
+  "name": "belle-epoque-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Site de la Cave La Belle Époque — Eleventy + Decap CMS",
+  "scripts": {
+    "build": "eleventy",
+    "start": "eleventy --serve"
+  },
+  "dependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "glob": "^11.0.0",
+    "gray-matter": "^4.0.3",
+    "js-yaml": "^4.1.0"
+  }
+}

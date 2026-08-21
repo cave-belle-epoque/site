@@ -1,0 +1,252 @@
+---
+layout: base.njk
+---
+<!-- HERO -->
+<section class="hero">
+  <div class="hero__img"><img src="/assets/terrasse.jpg" alt="La terrasse ombragée de La Belle Époque, ses tonneaux et sa guirlande d'ampoules"></div>
+  <div class="wrap hero__inner">
+    <p class="kicker">Saint-Symphorien-sur-Coise</p>
+    <h1>Le bon verre, à deux pas de chez vous.</h1>
+    <p class="sub">Cave à vin, bar gourmand et table du midi, place du Marché. Plus de 250 vins choisis un par un — et une terrasse pour les boire.</p>
+    <div class="hero__cta">
+      <a href="#reserver" class="btn btn--light">Réserver une table</a>
+      <a href="#carte" class="btn btn--ghost" style="color:#fff;border-color:rgba(255,255,255,.55)">Le menu de la semaine</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATUS -->
+<div class="strip">
+  <div class="wrap strip__in">
+    <span id="status"><span class="dot"></span><b>Horaires</b></span>
+    <span class="sep">—</span>
+    <span><a href="tel:0426554671">04 26 55 46 71</a></span>
+    <span class="sep">—</span>
+    <span><span>64 place du Marché, 69590</span></span>
+  </div>
+</div>
+
+<!-- TROIS MÉTIERS -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Une maison, trois façons</p>
+      <h2>Une cave, un bar, une table.</h2>
+      <p class="lead">On passe prendre une bouteille, on reste pour un verre, on revient déjeuner. C'est le même endroit — et c'est un peu là toute l'idée.</p>
+    </div>
+    <div class="trio">
+      <article class="card">
+        <span class="num">— 01</span>
+        <h3>La cave</h3>
+        <p>Plus de 250 références choisies chez des vignerons, de toutes les régions. Des bouteilles à tous les prix, et des conseils qui vont avec.</p>
+        <div class="meta">Vins · Spiritueux · Bières artisanales</div>
+      </article>
+      <article class="card">
+        <span class="num">— 02</span>
+        <h3>Le bar gourmand</h3>
+        <p>Vins au verre, bières pression, cafés, thés et glaces. Des planches à partager, en terrasse dès les beaux jours.</p>
+        <div class="meta">De 10 à 20 € · Terrasse ombragée</div>
+      </article>
+      <article class="card">
+        <span class="num">— 03</span>
+        <h3>La table du midi</h3>
+        <p>Un menu du jour qui change chaque semaine, cuisiné simplement avec ce qu'on trouve de bon au marché. Du mardi au vendredi.</p>
+        <div class="meta">Menu complet {{ menu.prix }} € · Sur réservation</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- CARTE : lue depuis content/menu.yml -->
+<section class="section section--cream" id="carte">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Du mardi au vendredi</p>
+      <h2>Le menu de la semaine.</h2>
+      <p class="lead">Semaine du {{ menu.semaine_du | date("d MMMM", "fr") }} — entrée, plat et dessert. La carte change tous les lundis.</p>
+    </div>
+    <div class="menu-grid">
+      <div class="menu-card">
+        <div class="menu-card__top">
+          <h3>Menu du jour</h3>
+          <span class="price">{{ menu.prix }} €</span>
+        </div>
+        <ul class="days">
+          {% for j in menu.jours %}
+          <li{% if j.avant %} class="hl"{% endif %}>
+            <span class="d">{{ j.jour }}</span>
+            <span class="plat">{{ j.plat }}{% if j.avant %} <span class="tag">Le classique</span>{% endif %}
+              <em>{{ j.dessert }}</em></span>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <aside class="aside-card">
+        <h3>À l'ardoise, toute la journée</h3>
+        <p>Pour un verre, un café ou un apéritif improvisé — sans réservation.</p>
+        <ul>
+          {% for a in menu.ardoise %}
+          <li>{{ a.nom }} <span>{{ a.prix }}</span></li>
+          {% endfor %}
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ÉVÉNEMENTS : lus depuis content/evenements/*.md -->
+<section class="section" id="evenements">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">L'agenda</p>
+      <h2>Ce qui se passe à la cave.</h2>
+      <p class="lead">Concerts, dégustations, soirées vigneron. On vous prévient ici — et sur Facebook.</p>
+    </div>
+    <div class="events">
+      {% for ev in collections.evenements %}
+      <article class="ev{% if ev.avant %} ev--next{% endif %}">
+        <div class="ev__date"><div class="dd">{{ ev.date | date("d") }}</div><div class="mm">{{ ev.date | date("MMM", "fr") }}</div></div>
+        <div class="ev__body">
+          <h3>{{ ev.title }}</h3>
+          <div class="when">{{ ev.horaire }}</div>
+          <p>{{ ev.body }}</p>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- RÉSERVATION : formulaire Netlify Forms, pas de backend à écrire -->
+<section class="section section--cream" id="reserver">
+  <div class="wrap">
+    <div class="resa">
+      <div>
+        <p class="eyebrow">Le midi, du mardi au vendredi</p>
+        <h2>Réserver une table.</h2>
+        <p class="lead">La salle est petite et le midi part vite. Un mot ici et on vous garde une place — on vous confirme par téléphone dans la journée.</p>
+        <div class="reviews">
+          <div class="rev"><div class="score">4,9</div><div class="src">Google · 40 avis</div></div>
+          <div class="rev"><div class="score">5,0</div><div class="src">Petit Futé · 21 avis</div></div>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <div class="ok" id="ok">
+          <b>Merci, c'est noté.</b><br>On vous rappelle dans la journée au numéro indiqué pour confirmer.
+        </div>
+        <form class="fgrid" id="form" name="reservation" method="POST" data-netlify="true" netlify-honeypot="societe">
+          <input type="hidden" name="form-name" value="reservation">
+          <p style="display:none">
+            <label>Ne pas remplir : <input name="societe"></label>
+          </p>
+          <div class="field">
+            <label for="date">Date</label>
+            <input type="date" id="date" name="date" required>
+          </div>
+          <div class="field">
+            <label for="pers">Personnes</label>
+            <select id="pers" name="personnes">
+              <option>1 personne</option>
+              <option selected>2 personnes</option>
+              <option>3 personnes</option>
+              <option>4 personnes</option>
+              <option>5 personnes</option>
+              <option>6 personnes et plus</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="nom">Nom</label>
+            <input type="text" id="nom" name="nom" placeholder="Votre nom" required>
+          </div>
+          <div class="field">
+            <label for="tel">Téléphone</label>
+            <input type="tel" id="tel" name="telephone" placeholder="06 __ __ __ __" required>
+          </div>
+          <div class="field field--full">
+            <label for="msg">Un mot ? (facultatif)</label>
+            <textarea id="msg" name="message" placeholder="Allergie, poussette, table en terrasse…"></textarea>
+          </div>
+          <div class="field field--full">
+            <button type="submit" class="btn btn--ink" style="width:100%">Envoyer ma demande</button>
+            <p class="note">
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#8A807A" stroke-width="1.3"/><path d="M8 4.6v4.2M8 11.2v.2" stroke="#8A807A" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <span>Il s'agit d'une demande, pas d'une confirmation. Pour le jour même, appelez-nous directement au 04 26 55 46 71.</span>
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAVE -->
+<section class="section" id="cave">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">À emporter</p>
+      <h2>La cave, et les idées cadeaux.</h2>
+      <p class="lead">Passez nous voir, dites-nous le budget et l'occasion. On compose le coffret devant vous.</p>
+    </div>
+    <div class="cave">
+      <div class="stat">
+        <div class="big">250+</div>
+        <p>Références en cave, choisies chez des vignerons de toutes les régions — et quelques belles surprises d'ailleurs.</p>
+      </div>
+      <div class="stat">
+        <div class="big">Coffrets</div>
+        <p>Vin, spiritueux ou bières artisanales, montés sur mesure. À tous les budgets, pour tous les prétextes.</p>
+      </div>
+      <div class="stat">
+        <div class="big">Carte cadeau</div>
+        <p>Quand on ne sait pas quoi offrir : le montant que vous voulez, à dépenser à la cave ou au bar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INFOS : horaires lus depuis content/horaires.yml -->
+<section class="section section--cream" id="infos">
+  <div class="wrap">
+    <div class="infos">
+      <div>
+        <p class="eyebrow">Nous trouver</p>
+        <h2>Place du Marché, au centre du village.</h2>
+        <p class="lead">64 place du Marché<br>69590 Saint-Symphorien-sur-Coise</p>
+        <div style="margin-top:22px;display:flex;gap:11px;flex-wrap:wrap">
+          <a href="tel:0426554671" class="btn btn--ink">04 26 55 46 71</a>
+          <a href="https://www.google.com/maps/search/?api=1&query=64+place+du+March%C3%A9+69590+Saint-Symphorien-sur-Coise" class="btn btn--ghost">Itinéraire</a>
+        </div>
+        <div class="badges">
+          <span class="badge">Terrasse ombragée</span>
+          <span class="badge">Parking gratuit à proximité</span>
+          <span class="badge">Accès PMR</span>
+          <span class="badge">Chiens acceptés en terrasse</span>
+          <span class="badge">Vente à emporter</span>
+          <span class="badge">CB · chèque · espèces</span>
+        </div>
+      </div>
+      <div>
+        <h3 style="margin-bottom:16px">Horaires</h3>
+        <ul class="hours">
+          {% for j in horaires.jours %}
+          <li>
+            <span class="day">{{ j.jour }}</span>
+            <span class="h{% if j.ferme %} closed{% endif %}">
+              {%- if j.ferme -%}
+                Fermé
+              {%- else -%}
+                {% for c in j.creneaux %}{{ c.debut | replace(":", "h") }} – {{ c.fin | replace(":", "h") }}{% if not loop.last %} · {% endif %}{% endfor %}
+              {%- endif -%}
+            </span>
+          </li>
+          {% endfor %}
+        </ul>
+        <p class="note" style="margin-top:18px">
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#8A807A" stroke-width="1.3"/><path d="M8 4.6v4.2M8 11.2v.2" stroke="#8A807A" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span>Service du midi du mardi au vendredi. Le vendredi, on reste ouvert jusqu'à 23h.</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
