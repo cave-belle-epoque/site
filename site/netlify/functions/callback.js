@@ -61,3 +61,4 @@ exports.handler = async (event) => {
     body,
   };
 };
+// redeploy: prise en compte du client secret (2026-08-21T10:07:43Z)
