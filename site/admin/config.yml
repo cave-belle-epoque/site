@@ -3,14 +3,10 @@
 
 backend:
   name: github
-  # TODO : remplacer par "organisation/depot" une fois l'organisation GitHub
-  # cave-belle-epoque créée (voir docs/architecture.md, section 9bis).
   repo: cave-belle-epoque/site
   branch: main
-  # TODO : une fois le relais OAuth déployé (fonction Netlify), décommenter
-  # et pointer vers son URL :
-  # base_url: https://cave-belle-epoque.netlify.app
-  # auth_endpoint: api/auth
+  base_url: https://cave-belle-epoque.netlify.app
+  auth_endpoint: auth
 
 # Chaque modification passe par Brouillon → Relecture → Prêt à publier,
 # avec un lien de prévisualisation avant mise en ligne (voir architecture.md §6).
