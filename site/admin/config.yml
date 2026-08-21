@@ -54,6 +54,7 @@ collections:
     summary: "{{title}} — {{date}}"
     fields:
       - {label: "Titre", name: "title", widget: "string"}
+      - {label: "Photo (facultatif)", name: "image", widget: "image", required: false, hint: "Format paysage de préférence (affiche, concert, bouteille du moment...). Évitez les photos de plus de 2-3 Mo — pas de redimensionnement automatique pour l'instant."}
       - {label: "Date", name: "date", widget: "date", format: "YYYY-MM-DD"}
       - {label: "Horaire affiché", name: "horaire", widget: "string", hint: "Ex. « Vendredi, 19h30 · entrée libre »"}
       - {label: "Mettre en avant (prochain événement)", name: "avant", widget: "boolean", default: false}

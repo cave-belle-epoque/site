@@ -18,7 +18,7 @@ npm run build    # build de production dans _site/
 | Fichier | Contenu | Édité via |
 |---|---|---|
 | `content/menu.yml` | Menu de la semaine + ardoise | `/admin` → "Menu de la semaine" |
-| `content/evenements/*.md` | Agenda (un fichier par événement) | `/admin` → "Événements" |
+| `content/evenements/*.md` | Agenda (un fichier par événement, photo facultative) | `/admin` → "Événements" |
 | `content/horaires.yml` | Horaires + fermetures exceptionnelles | `/admin` → "Horaires" |
 
 Le bandeau "ouvert maintenant", le tableau d'horaires du pied de page, les
@@ -52,6 +52,14 @@ synchroniser à la main.
   cours de manipulation (`OAUTH_GITHUB_CLIENT_ID`), recréée. Les deux
   variables sont maintenant stables : `OAUTH_GITHUB_CLIENT_ID` et
   `OAUTH_GITHUB_CLIENT_SECRET`, scopes Builds/Functions/Runtime.
+- ✅ Photos sur les événements : champ image ajouté à la collection
+  Decap CMS, gabarit adapté (carte avec photo pleine largeur en haut si
+  présente, inchangée sinon), stockage dans `assets/uploads/` déjà
+  branché. **L'événement "Réouverture · Vogue" porte une photo de
+  démonstration** (`assets/uploads/demo-vogue.jpg`, en fait la photo de
+  terrasse réutilisée) pour montrer la fonctionnalité — à remplacer par
+  une vraie photo ou à retirer avant la présentation. Pas de
+  redimensionnement automatique : éviter les photos de plus de 2-3 Mo.
 
 ## Ce qui reste à faire avant la remise au client
 

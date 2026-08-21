@@ -105,11 +105,14 @@ layout: base.njk
     <div class="events">
       {% for ev in collections.evenements %}
       <article class="ev{% if ev.avant %} ev--next{% endif %}">
-        <div class="ev__date"><div class="dd">{{ ev.date | date("d") }}</div><div class="mm">{{ ev.date | date("MMM", "fr") }}</div></div>
-        <div class="ev__body">
-          <h3>{{ ev.title }}</h3>
-          <div class="when">{{ ev.horaire }}</div>
-          <p>{{ ev.body }}</p>
+        {% if ev.image %}<img class="ev__img" src="{{ ev.image }}" alt="{{ ev.title }}" loading="lazy">{% endif %}
+        <div class="ev__row">
+          <div class="ev__date"><div class="dd">{{ ev.date | date("d") }}</div><div class="mm">{{ ev.date | date("MMM", "fr") }}</div></div>
+          <div class="ev__body">
+            <h3>{{ ev.title }}</h3>
+            <div class="when">{{ ev.horaire }}</div>
+            <p>{{ ev.body }}</p>
+          </div>
         </div>
       </article>
       {% endfor %}

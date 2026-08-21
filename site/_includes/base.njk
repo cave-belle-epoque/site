@@ -186,10 +186,12 @@ nav a:hover{color:var(--rose-deep)}
 /* ---------- events ---------- */
 .events{display:grid;gap:14px}
 .ev{
-  display:flex;gap:20px;background:var(--paper);border:1px solid var(--line);
-  border-radius:var(--r);padding:20px 22px;align-items:flex-start;transition:.2s ease;
+  display:flex;flex-direction:column;background:var(--paper);border:1px solid var(--line);
+  border-radius:var(--r);overflow:hidden;transition:.2s ease;
 }
 .ev:hover{border-color:var(--rose)}
+.ev__img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:var(--stone)}
+.ev__row{display:flex;gap:20px;padding:20px 22px;align-items:flex-start}
 .ev__date{
   flex:0 0 62px;text-align:center;background:var(--rose-soft);
   border-radius:10px;padding:9px 4px;
