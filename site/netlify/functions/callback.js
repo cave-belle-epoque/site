@@ -66,3 +66,4 @@ exports.handler = async (event) => {
   };
 };
 // redeploy: prise en compte du client secret (2026-08-21T10:07:43Z)
+// redeploy: OAUTH_GITHUB_CLIENT_SECRET corrigé (2026-08-21T10:14:38Z)
