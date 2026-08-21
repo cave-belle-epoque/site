@@ -34,7 +34,7 @@ collections:
             widget: "list"
             summary: "{{jour}} — {{plat}}"
             fields:
-              - {label: "Jour", name: "jour", widget: "select", options: ["Mardi", "Mercredi", "Jeudi", "Vendredi"]}
+              - {label: "Jour", name: "jour", widget: "select", options: ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"]}
               - {label: "Plat", name: "plat", widget: "string"}
               - {label: "Dessert", name: "dessert", widget: "string"}
               - {label: "Mettre en avant (ex. menu Pelaud)", name: "avant", widget: "boolean", default: false}
