@@ -29,3 +29,4 @@ exports.handler = async () => {
   };
 };
 // redeploy: prise en compte des variables OAuth (2026-08-21T10:00:50Z)
+// redeploy: OAUTH_GITHUB_CLIENT_ID recréé (2026-08-21T10:18:33Z)
