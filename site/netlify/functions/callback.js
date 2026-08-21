@@ -15,9 +15,13 @@ exports.handler = async (event) => {
   const clientSecret = process.env.OAUTH_GITHUB_CLIENT_SECRET;
 
   if (!clientId || !clientSecret) {
+    const missing = [
+      !clientId ? "OAUTH_GITHUB_CLIENT_ID" : null,
+      !clientSecret ? "OAUTH_GITHUB_CLIENT_SECRET" : null,
+    ].filter(Boolean);
     return {
       statusCode: 500,
-      body: "Variables d'environnement OAUTH_GITHUB_CLIENT_ID / OAUTH_GITHUB_CLIENT_SECRET manquantes sur Netlify.",
+      body: `Variable(s) d'environnement manquante(s) sur Netlify : ${missing.join(", ")}.`,
     };
   }
 
